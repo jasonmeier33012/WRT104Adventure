@@ -4,375 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The North Woods: Resilience</title>
-  <style>
-    :root {
-      --bg: #0f1411;
-      --panel: #182019;
-      --panel-2: #202a22;
-      --text: #edf2eb;
-      --muted: #b8c4b7;
-      --accent: #9bc28e;
-      --accent-2: #dbe9d7;
-      --border: rgba(255,255,255,0.08);
-      --shadow: 0 20px 50px rgba(0,0,0,0.28);
-      --max: 1100px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top, rgba(111, 146, 109, 0.14), transparent 28%),
-        linear-gradient(180deg, #0b110d 0%, var(--bg) 100%);
-      color: var(--text);
-      line-height: 1.75;
-    }
-
-    a { color: inherit; }
-
-    .hero {
-      min-height: 72vh;
-      display: flex;
-      align-items: center;
-      padding: 4rem 1.25rem 3rem;
-      border-bottom: 1px solid var(--border);
-      background:
-        linear-gradient(rgba(10,14,11,0.45), rgba(10,14,11,0.72)),
-        url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1600&q=80') center/cover;
-    }
-
-    .hero-inner {
-      width: min(100%, var(--max));
-      margin: 0 auto;
-      padding: 3rem;
-      background: rgba(12, 17, 13, 0.55);
-      backdrop-filter: blur(4px);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 1rem;
-      padding: 0.4rem 0.75rem;
-      border-radius: 999px;
-      background: rgba(155,194,142,0.14);
-      color: var(--accent-2);
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3 {
-      line-height: 1.15;
-      margin: 0 0 1rem;
-      font-weight: 700;
-    }
-
-    h1 {
-      font-size: clamp(2.6rem, 6vw, 5rem);
-      max-width: 10ch;
-    }
-
-    .hero p {
-      max-width: 68ch;
-      font-size: 1.08rem;
-      color: var(--accent-2);
-      margin-bottom: 0;
-    }
-
-    main {
-      width: min(100%, var(--max));
-      margin: 0 auto;
-      padding: 2rem 1.25rem 5rem;
-    }
-
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 1.5rem;
-      margin-top: -3rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-    }
-
-    .card h2 {
-      font-size: 1.6rem;
-    }
-
-    .meta-list {
-      display: grid;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .meta-list strong {
-      display: block;
-      color: var(--accent-2);
-      margin-bottom: 0.2rem;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .section {
-      margin-top: 2.25rem;
-    }
-
-    .section-header {
-      margin-bottom: 1rem;
-    }
-
-    .section-header p {
-      color: var(--muted);
-      max-width: 60ch;
-      margin-top: 0;
-    }
-
-    .journey-grid {
-      display: grid;
-      gap: 1.25rem;
-    }
-
-    .stop {
-      padding: 1.4rem;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .stop:hover {
-      transform: translateY(-3px);
-      border-color: rgba(155,194,142,0.28);
-    }
-
-    .stop-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      background: rgba(155,194,142,0.16);
-      color: var(--accent);
-      font-weight: bold;
-      margin-bottom: 0.9rem;
-    }
-
-    .stop h3 {
-      font-size: 1.35rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .stop p:last-child { margin-bottom: 0; }
-
-    .quote-block {
-      margin-top: 2.25rem;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(155,194,142,0.12), rgba(255,255,255,0.03));
-      border-left: 4px solid var(--accent);
-      border-radius: 20px;
-      font-size: 1.2rem;
-      color: var(--accent-2);
-      box-shadow: var(--shadow);
-    }
-
-    .conclusion {
-      margin-top: 2.5rem;
-      padding: 2rem;
-      background: var(--panel-2);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-    }
-
-    footer {
-      width: min(100%, var(--max));
-      margin: 0 auto;
-      padding: 0 1.25rem 3rem;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 840px) {
-      .hero-inner {
-        padding: 2rem;
-      }
-
-      .intro-grid {
-        grid-template-columns: 1fr;
-        margin-top: 1.5rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <span class="eyebrow">URI North Woods</span>
+  <header class="site-header">
+    <div class="hero">
+      <span class="eyebrow">ADV Level 3 - WRT104</span>
       <h1>The North Woods: Resilience</h1>
       <p>
-        A reflective web adaptation of a journey through the University of Rhode Island’s North Woods,
-        exploring how winter landscapes, history, decay, and renewal all reveal the many forms of resilience.
+        A modern web presentation of the full essay, preserving the original structure and imagery while giving it a cleaner,
+        more immersive reading experience.
       </p>
     </div>
   </header>
 
   <main>
-    <section class="intro-grid" aria-label="Introduction">
-      <article class="card">
-        <h2>Why this place matters</h2>
-        <p>
-          In a fast-paced digital world, it is easy to move through daily life on autopilot and overlook the natural spaces around us.
-          This project argues that the North Woods at the University of Rhode Island offer more than just scenery. Even in winter,
-          the woods remind us that resilience can appear as strength, adaptability, endurance, and renewal.
-        </p>
-        <p>
-          What may first seem still or lifeless slowly reveals itself to be active, meaningful, and full of lessons. By slowing down,
-          observing closely, and reflecting on what the forest shows us, we begin to see resilience not only in nature, but in ourselves.
-        </p>
-      </article>
-
-      <aside class="card">
-        <h2>At a glance</h2>
-        <ul class="meta-list">
-          <li>
-            <strong>Location</strong>
-            University of Rhode Island, Kingston campus
-          </li>
-          <li>
-            <strong>Setting</strong>
-            A 307-acre forest with public trails and rich biodiversity
-          </li>
-          <li>
-            <strong>Theme</strong>
-            Resilience in nature, people, and communities
-          </li>
-          <li>
-            <strong>Focus</strong>
-            Winter observation, reflection, and transformation
-          </li>
-        </ul>
-      </aside>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <h2>Introducing the North Woods</h2>
-        <p>
-          Just a short walk from the dorms, the North Woods feel separate from campus life. The trails are open to students and community members alike,
-          and the space functions as both a natural retreat and an outdoor classroom.
-        </p>
-      </div>
-      <div class="card">
-        <p>
-          Despite being close to the university, the woods create a sense of distance from everyday routines. The area is maintained year-round,
-          making it accessible in every season. In warmer months, the forest is full of biodiversity and activity. In colder months, that same space becomes quieter,
-          but not empty. The stillness of winter creates a different kind of presence—one that encourages reflection.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" id="journey">
-      <div class="section-header">
-        <h2>The journey through the woods</h2>
-        <p>
-          Each point along the trail revealed a different dimension of resilience, showing that endurance is not always loud or obvious.
-        </p>
+    <article class="paper">
+      <div class="intro-note">
+        This version keeps the essay essentially paragraph-by-paragraph, with the images from the original document embedded directly into the reading flow.
       </div>
 
-      <div class="journey-grid">
-        <article class="stop">
-          <div class="stop-number">1</div>
-          <h3>The winter trail</h3>
-          <p>
-            At first glance, the woods seem still and almost lifeless. Snow covers the ground, trees stand bare, and the sounds of warmer seasons are absent.
-            Yet the maintained trail and visible tracks remind us that life continues. Even under harsh conditions, the forest remains standing, accessible, and alive.
-          </p>
-        </article>
+      <section class="essay">
+        <p>Oftentimes in our daily lives we go from place to place, from stop to stop, bouncing from one location to another without necessarily truly taking in our surroundings. As of late, there has been a growing trend of people claiming to live on "autopilot", that is, can perform their day to day tasks and exist without being fully present, conscious, or actively aware of what they are currently doing. Now given that is the case, it makes sense why nature seems to be only the background of people’s days, not a priority to appreciate or really take in and reflect upon. The nature of Rhode Island, especially the coasts, are sought out by residents and nonresidents every year, typically in the summer months only. In the winter, however, the beaches are no longer favorable, most plants die, and then nature goes back to being a backdrop in our day to day lives. The North Woods at the University of Rhode Island’s Kingston campus show us why it is still important to pay attention to the nature around us in the digital age, especially in the winter months. There is a dramatic lesson to be learned about resilience that can be applied to nature and also ourselves as individuals and a society. Our journey into the North Woods was a transformative experience and lesson about the importance of resilience that we are eager to share with you.</p>
 
-        <article class="stop">
-          <div class="stop-number">2</div>
-          <h3>Evergreens and bushes</h3>
-          <p>
-            The evergreen plants stand out against the winter landscape. Their color and persistence become symbols of hope. While much of the forest appears dormant,
-            these plants show that resilience can mean refusing to fade, even in an unforgiving season.
-          </p>
-        </article>
+        <p>Before delving into our theme from the woods, we would like to briefly introduce the North Woods to anyone who is unfamiliar with them. Just a quick walk from the dorms at the University of Rhode Island sits the North Woods which are a 307-acre forest that feels completely separate from campus life. There are a handful of trails and trail combinations that anyone can go on, regardless of whether you are a student at the University of Rhode Island or not. Despite the close proximity to the university, anyone can go on the trails, like community members, or those even outside the general area. The woods are home to a plethora of biodiversity, ranging from plant species to animals, especially in the warmer months. Additionally, students get a lot of use out of the woods and some classes even take place and meet in the woods, making the space an experimental classroom and learning area.</p>
 
-        <article class="stop">
-          <div class="stop-number">3</div>
-          <h3>Stone walls and memory</h3>
-          <p>
-            Old stone walls connect the present woods to the people who once occupied the land. Their endurance reflects historical resilience,
-            preserving traces of older settlements and reminding visitors that the forest carries memory as well as life.
-          </p>
-        </article>
+        <figure class="figure">
+          <img src="images/image1.jpg" alt="Benches in the North Woods used for classes" />
+          <figcaption>Pictured above are benches that are used for classes.</figcaption>
+        </figure>
 
-        <article class="stop">
-          <div class="stop-number">4</div>
-          <h3>Bending roots</h3>
-          <p>
-            A twisted root offers a subtler lesson. Resilience is not always about resisting pressure completely. Sometimes it is about bending, adapting,
-            and holding together under strain. Just like roots, people and communities are often tested by life, but survival can come through flexibility.
-          </p>
-        </article>
+        <p>Lastly, the woods are continuously maintained and well groomed and are open and accessible all the time all year round. On February 20th, we had the pleasure of visiting the North Woods and learning the lessons it had to teach us in the afternoon. We took to the trails and began to be immersed in the world around us, unimaginable from the comfort of our dorms. Here is our journey.</p>
 
-        <article class="stop">
-          <div class="stop-number">5</div>
-          <h3>Fungi and transformation</h3>
-          <p>
-            Fungi growing on a tree may look like decay, but they are also part of renewal. As wood breaks down, nutrients return to the soil and new life becomes possible.
-            This moment reframes resilience as transformation: even during decline, something meaningful and life-giving can still emerge.
-          </p>
-        </article>
+        <p>Our first attraction on our journey is going to be at the beginning of the trail pictured below.</p>
 
-        <article class="stop">
-          <div class="stop-number">6</div>
-          <h3>The fallen tree</h3>
-          <p>
-            A tree lying across the trail interrupts movement and forces a change in path. In that way, it mirrors obstacles in life. Still, the fallen tree remains part of the ecosystem,
-            supporting insects and plants. Its presence suggests that even after collapse, something can continue to serve a purpose.
-          </p>
-        </article>
-      </div>
-    </section>
+        <figure class="figure">
+          <img src="images/image3.jpg" alt="Beginning of a snowy trail in the North Woods" />
+        </figure>
 
-    <section class="quote-block" aria-label="Key takeaway">
-      Resilience is not only standing tall. Sometimes it is bending, adapting, breaking down, renewing, and still finding a way to matter.
-    </section>
+        <p>In winter, it appears still and almost lifeless at first glance. Snow covers the forest floor and trees stand bare. The woods are quiet and they lack the livelihood they would typically house in the spring and summer months. You could never begin to imagine the atmosphere of wind blowing, birds chirping, and people walking around that would accompany you in July. Despite all the snow, it is clear that the trails still are maintained and accessible to the public. Taking in all the sights and truly reflecting on the image, the quiet resilience shines through. Despite the adverse weather conditions the woods stay strong. The trees are solid and stand tall and you can see what appears to be prints, whether animals or humans, showing that life continues and flows all throughout the woods.</p>
 
-    <section class="conclusion">
-      <h2>Conclusion</h2>
-      <p>
-        The North Woods reveal that resilience is not one simple idea. It can look like strength, like trees standing through winter.
-        It can look like adaptability, like roots changing shape around pressure. It can also look like renewal, where decay creates the conditions for new life.
-      </p>
-      <p>
-        In a world where many people rush from one task to another without paying close attention to their surroundings, places like the North Woods offer an important pause.
-        They invite us to observe carefully, think deeply, and remember that resilience is not just something found in the forest. It is also a quality that exists within individuals and communities,
-        especially during difficult or uncertain times.
-      </p>
-    </section>
+        <figure class="figure">
+          <img src="images/image4.jpg" alt="Evergreen plants and bushes in the winter woods" />
+        </figure>
+
+        <p>As we continued on the trail we passed bushes and evergreen trees. These trees and bushes stay strong and refuse to die and go into the cold of the winter. The undying resilience of the vibrant greenery is a symbol of hope urging us to power through and stay strong. It is a powerful message that inspired us. If nature can survive even in the most unlikely situations, we too can remain resilient and strong when the odds are stacked against us.</p>
+
+        <div class="figure-grid">
+          <figure class="figure">
+            <img src="images/image2.jpg" alt="Old stone walls in the North Woods" />
+          </figure>
+          <figure class="figure">
+            <img src="images/image5.jpg" alt="Historic stone walls and settlement traces in the North Woods" />
+          </figure>
+        </div>
+
+        <p>In discussion of our journey it is important to always reflect upon what came before, which is exactly what we did. Pictured above are the old stone rock walls that shine a light on the old settlements of the woods before our time. The fact that these stone walls have been here for generations adds to the resilience of the wood, making sure we do not forget the rich history that lives in the woods before us.</p>
+
+        <figure class="figure">
+          <img src="images/image8.jpg" alt="A bent root or tree growth showing flexibility and adaptation" />
+        </figure>
+
+        <p>Resilience takes many shapes and forms. Sometimes it is more direct, and other times subtle. Picture above is a fairly subtle takeaway about resilience. This part of the tree, assuming it to be the root, grew in an extraordinary way. The flexibility of the root is a lesson that resilience is not about resisting pressure completely, but adapting to it. Our roots are who we are and how we are grounded as individuals and a society. Life is not perfect, and therefore our roots will never be completely straight and unbothered or never tested by life. Despite that, instead of letting the roots snap and break, we must learn to let them bend and adapt to life’s pressures and tests.</p>
+
+        <figure class="figure">
+          <img src="images/image7.jpg" alt="Clusters of fungi growing from tree bark in the North Woods" />
+        </figure>
+
+        <p>We found a tree that was covered in clusters of small fungi growing out from the bark. We saw how the fungi growing on the tree are part of the forest’s natural cycle. While they are breaking down the wood of the tree, they are also returning nutrients back into the soil and allowing new life to emerge in the ecosystem. What may appear to be destruction is actually a form of recycling of nutrients and renewal. This moment reminded us that resilience is sometimes about transformation. Just as the tree continues to support life even as it slowly breaks down, individuals and communities can also find ways to contribute and grow even during periods of difficulty or transition.</p>
+
+        <figure class="figure">
+          <img src="images/image6.jpg" alt="A fallen tree blocking part of the trail in the North Woods" />
+        </figure>
+
+        <p>As we continued further, we came across a tree that had fallen in front of the trail. At first, it appeared to be an obstacle interrupting the otherwise peaceful walk through the woods. In life, just like on the trail, obstacles can appear when we least expect them. They interrupt our plans and force us to change our direction. However, obstacles can simply force us to adapt. Just as hikers in the woods must step around the fallen tree or find another way forward, people in life must learn to navigate around challenges that appear in their path. Even in collapse, the tree remains part of the living ecosystem, serving as a home to other insects and plants. This reinforces the idea that resilience is not always about standing tall forever, but continuing to provide value and purpose even after a setback.</p>
+
+        <div class="quote">
+          Resilience is not always about standing tall forever. Sometimes it is about adapting, transforming, and still providing value after a setback.
+        </div>
+
+        <h2>Conclusion</h2>
+
+        <p>Our journey through the North Woods revealed far more than just a quiet winter landscape. What initially seemed like a dormant forest covered in snow slowly revealed itself to be full of life, history, and powerful lessons about resilience. Through the standing trees, the evergreen plants that remain vibrant during the winter, the historical stone walls, the bending roots, and even the fallen or decaying trees, the woods continuously demonstrate that resilience takes many forms. Sometimes resilience looks like strength, like the tall trees standing firmly. Other times it appears as adaptability, like roots bending around obstacles or hikers navigating around a fallen tree. In other moments, resilience reveals itself through renewal and transformation, as seen in the fungi breaking down old wood. Beneath the snow and silence, life continues to adapt, persist, and prepare for renewal. In many ways, this mirrors the experiences of people and communities. Life inevitably brings challenges, obstacles, and periods that feel quiet or uncertain. Yet, just like the forest, resilience allows us to adapt, continue forward, and eventually grow again.</p>
+
+        <p>In a fast-paced digital world where many people overlook the natural environment around them, places like the North Woods serve as important reminders to pause, observe, and reflect. Nature has countless lessons to offer, and one of the most important among them is resilience. By taking the time to walk the trails, observe the landscape, and reflect on its meaning, we are reminded that resilience is not only a characteristic of the forest, but also something that exists within ourselves.</p>
+      </section>
+    </article>
   </main>
 
-  <footer>
-    Web adaptation based on the essay <em>The North Woods: Resilience</em>.
+  <footer class="site-footer">
+    <p>Built from the original Word document and its embedded images.</p>
   </footer>
 </body>
 </html>
